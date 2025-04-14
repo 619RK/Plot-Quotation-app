@@ -1,0 +1,200 @@
+
+    :root {
+      --bg-light: #f9f9f9;
+      --bg-dark: #121212;
+      --text-light: #111;
+      --text-dark: #eee;
+      --card-light: #fff;
+      --card-dark: #1e1e1e;
+      --primary: #3b82f6;
+      --primary-hover: #2563eb;
+      --success: #10b981;
+      --success-hover: #059669;
+      --border: #ddd;
+      --border-dark: #444;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: var(--bg-light);
+      color: var(--text-light);
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    body.dark {
+      background-color: var(--bg-dark);
+      color: var(--text-dark);
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background-color: var(--card-light);
+      border-radius: 1rem;
+      box-shadow: 0 0 20px rgba(0,0,0,0.08);
+      transition: background-color 0.3s;
+    }
+
+    body.dark .container {
+      background-color: var(--card-dark);
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 0.75rem;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    input[type="file"],
+    select {
+      width: 100%;
+      padding: 10px 14px;
+      margin-top: 0.25rem;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background-color: #fff;
+      transition: border-color 0.3s, background-color 0.3s;
+      font-size: 1rem;
+      box-sizing: border-box;
+    }
+
+    body.dark input,
+    body.dark select {
+      background-color: #2a2a2a;
+      border-color: var(--border-dark);
+      color: var(--text-dark);
+    }
+
+    button {
+      padding: 10px 18px;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background-color 0.3s, transform 0.2s;
+    }
+
+    button:hover {
+      transform: translateY(-1px);
+    }
+
+    .toggle-btn {
+      background-color: var(--primary);
+      color: white;
+    }
+
+    .toggle-btn:hover {
+      background-color: var(--primary-hover);
+    }
+
+    .success-btn {
+      background-color: var(--success);
+      color: white;
+    }
+
+    .success-btn:hover {
+      background-color: var(--success-hover);
+    }
+
+    .button-row {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .collapsible {
+      background-color: var(--primary);
+      color: white;
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-weight: bold;
+      width: 100%;
+      text-align: center;
+      margin-bottom: 1rem;
+      cursor: pointer;
+    }
+
+    .collapsible-content {
+      display: none;
+      margin-bottom: 1.5rem;
+      border: 1px dashed var(--border);
+      padding: 1rem;
+      border-radius: 8px;
+    }
+
+    body.dark .collapsible-content {
+      border-color: var(--border-dark);
+    }
+
+    .result-template {
+      border: 1px solid var(--border);
+      padding: 1.5rem;
+      border-radius: 10px;
+      margin-bottom: 1.5rem;
+      background-color: #f1f5f9;
+      transition: background-color 0.3s;
+    }
+
+    body.dark .result-template {
+      background-color: #1f2937;
+    }
+
+    .result-template h3 {
+      margin-top: 0;
+      color: var(--primary);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0,0,0,0.6);
+      z-index: 1000;
+    }
+
+    .modal-content {
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      margin: 5% auto;
+      width: 90%;
+      max-width: 1000px;
+      position: relative;
+    }
+
+    .modal-content iframe {
+      width: 100%;
+      height: 600px;
+      border: none;
+    }
+
+    .close {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      font-size: 28px;
+      cursor: pointer;
+      color: #444;
+    }
+
+    .close:hover {
+      color: red;
+    }

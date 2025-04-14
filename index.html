@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Plot Value Quotation Generator</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
+  <link rel="stylesheet" href="style.css">
+  
+</head>
+<body>
+  <div class="container">
+    <h1>Plot Value Quotation Generator</h1>
+    <div style="text-align:center; margin-bottom:1.5rem;">
+      <button class="toggle-btn" onclick="toggleTheme()">Toggle Theme</button>
+    </div>
+
+    <button class="collapsible" onclick="toggleCollapsible()">Toggle Company & Employee Info</button>
+    <div class="collapsible-content">
+      <label>Company Logo: <input type="file" id="logoInput" accept="image/*"></label>
+      <label>Your Name: <input type="text" id="userName" value="Shanmugam B"></label>
+      <label>Role/Designation: <input type="text" id="userRole" value="Director"></label>
+      <label>Phone Number: <input type="text" id="userPhone" value="9994116163"></label>
+      <label>Plot Name:
+        <select id="companyNameSelect" onchange="handleCompanyChange(this, 'companyNameInput')">
+          <option value="Krish Housing">KrisHousing</option>
+          <option value="new">Add New</option>
+        </select>
+        <input type="text" id="companyNameInput" placeholder="Enter Company Name" style="display:none;" />
+      </label>
+      <label>Plot Address:
+        <select id="companyAddressSelect" onchange="handleCompanyChange(this, 'companyAddressInput')">
+          <option value="Tnagar, Chengalpattu">Tnagar, Chengalpattu</option>
+          <option value="new">Add New</option>
+        </select>
+        <input type="text" id="companyAddressInput" placeholder="Enter Company Address" style="display:none;" />
+      </label>
+    </div>
+
+    <div id="plotsContainer"></div>
+
+    <div class="button-row">
+      <button class="toggle-btn" onclick="addPlotForm()">Add Plot</button>
+      <button class="success-btn" onclick="generatePDF(true)">Preview PDF</button>
+      <button class="toggle-btn" onclick="generatePDF(false)">Download Quotation PDF</button>
+    </div>
+  </div>
+
+  <div id="pdfModal" class="modal">
+    <div class="modal-content">
+      <iframe id="pdfViewer"></iframe>
+      <div style="text-align: center; margin-top: 1rem;">
+        <button class="toggle-btn" onclick="downloadLastPDF()">Download PDF</button>
+        <button class="toggle-btn" onclick="closeModal()" style="margin-left: 10px;">Close Preview</button>
+      </div>
+    </div>
+  </div>
+  <script src="code.js"></script>
+</body>
+</html>
