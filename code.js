@@ -271,7 +271,7 @@ async function generatePDF(preview = false) {
       document.getElementById('pdfModal').style.display = 'block';
     }
   } else {
-    doc.save('Quotation.pdf');
+    doc.save(getCompanyAddress()+' ('+new Date().toLocaleDateString()+').pdf');
   }
 }
 
