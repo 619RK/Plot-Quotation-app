@@ -142,6 +142,13 @@ async function generatePDF(preview = false) {
   const doc = new jsPDF('p', 'pt', 'a4');
   const pageWidth = doc.internal.pageSize.getWidth();
   const plots = getPlotData();
+
+    // ✅ Prevent PDF generation if no plots are added
+    if (!plots.length) {
+      alert("Please add at least one plot before generating the PDF.");
+      return;
+    }
+
   const logoFile = document.getElementById('logoInput').files[0];
   const logo = logoFile ? await getBase64Image(logoFile) : null;
 
@@ -166,7 +173,7 @@ async function generatePDF(preview = false) {
     plot.rate,
     plot.value,
     plot.gv,
-    plot.gvPercent+"%",
+    plot.gvPercent + "%",
     plot.prd,
     plot.total
   ]);
@@ -175,9 +182,9 @@ async function generatePDF(preview = false) {
     head: [["S.No", "Plot No", "Type", "SQFT", "Rate", "Value", "GV", "GV%", "PRD", "Total"]],
     body: tableData,
     startY: 170,
-    styles: { fontSize: 10.5, cellPadding: 3.5, textColor: [0, 0, 0] }, // Body text black
-    headStyles: { fillColor: [186, 85, 211], textColor: [255, 255, 255] } // Heading text white
-});
+    styles: { fontSize: 10.5, cellPadding: 3.5, textColor: [0, 0, 0] },
+    headStyles: { fillColor: [186, 85, 211], textColor: [255, 255, 255] }
+  });
 
   let currentY = doc.autoTable.previous.finalY + 20;
   doc.setFontSize(13);
@@ -248,15 +255,26 @@ async function generatePDF(preview = false) {
   }
 
   lastDoc = doc;
+
   if (preview) {
     const blob = doc.output('blob');
     const url = URL.createObjectURL(blob);
-    document.getElementById('pdfViewer').src = url;
-    document.getElementById('pdfModal').style.display = 'block';
+
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
+    if (isMobile) {
+      // ✅ Fix: open in new tab for Android
+      window.open(url, '_blank');
+    } else {
+      // ✅ Desktop: preview in iframe modal
+      document.getElementById('pdfViewer').src = url;
+      document.getElementById('pdfModal').style.display = 'block';
+    }
   } else {
     doc.save('Quotation.pdf');
   }
 }
+
 
 function getBase64Image(file) {
     return new Promise((resolve) => {
