@@ -271,7 +271,7 @@ async function generatePDF(preview = false) {
       document.getElementById('pdfModal').style.display = 'block';
     }
   } else {
-    doc.save(getCompanyAddress()+' ('+new Date().toLocaleDateString()+').pdf');
+    doc.save(getCompanyName()+' ('+new Date().toLocaleDateString()+').pdf');
   }
 }
 
